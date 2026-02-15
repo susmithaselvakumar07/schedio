@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schedio Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  <script>
+function loginUser(){
+  const params = new URLSearchParams(window.location.search);
+  const role = params.get("role");
+
+  if(role === "management"){
+    window.location.href = "management.html";
+  }
+  else if(role === "staff"){
+    window.location.href = "staff.html";
+  }
+  else{
+    window.location.href = "student.html";
+  }
+}
+</script>
+
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+}
+
+/* background gradient */
+.login-container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ff7e5f,#ff9966,#7f00ff,#2b5876);
+  background-size:400% 400%;
+  animation:bgMove 10s infinite ease;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* login box */
+.login-box{
+  width:350px;
+  padding:40px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  text-align:center;
+}
+
+.app-name{
+  font-size:38px;
+  color:white;
+  font-weight:700;
+}
+
+.login-text{
+  color:#eee;
+  margin-bottom:25px;
+}
+
+.input-group{
+  margin-bottom:18px;
+}
+
+.input-group input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,0.3);
+  color:white;
+  font-size:16px;
+}
+
+.input-group input::placeholder{
+  color:#f1f1f1;
+}
+
+.login-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  font-size:18px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#ffa500,#ff3cac,#7f00ff);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  transform:scale(1.06);
+}
+
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-box">
+    <div class="app-name">Schedio</div>
+    <div class="login-text" id="roleText">Login</div>
+
+
+    <form action="management.html">
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+
+    <button class="login-btn" onclick="loginUser()">Login</button>
+
+    <script>
+
+function loginUser() {
+
+  const role = localStorage.getItem("userRole");
+
+  if(role === "staff"){
+      window.location.href = "staff.html";
+  }
+  else if(role === "management"){
+      window.location.href = "management.html";
+  }
+  else if(role === "student"){
+      window.location.href = "student.html";
+  }
+  else{
+      alert("Role not selected");
+  }
+
+}
+</script>
+
+
+
+
+</script>
+
+</body>
+</html>
+
+</form>
+
+  </div>
+</div>
+
+</body>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if(username === "admin" && password === "1234"){
+        window.location.href = "management.html";
+    } else {
+        alert("Invalid login details");
+    }
+});
+</script>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+if(role){
+  document.getElementById("roleText").innerText =
+  role.charAt(0).toUpperCase() + role.slice(1) + " Login";
+}
+</script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+if(role){
+  document.getElementById("roleText").innerText =
+  role.charAt(0).toUpperCase() + role.slice(1) + " Login";
+}
+</script>
+
+</html>

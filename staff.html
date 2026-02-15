@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Proposal</title>
+<link rel="stylesheet" href="../schedule_css/style.css">
+
+<style>
+body{
+  font-family:Poppins;
+  background: linear-gradient(135deg,#ff7a18,#ffb347);
+}
+
+.form-container{
+  max-width:500px;
+  margin:60px auto;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-container h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:linear-gradient(45deg,#ff7a18,#ffb347);
+  border:none;
+  color:white;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="card" onclick="window.location.href='staff-proposal.html'">
+  <h3>📤 Submit Event Proposal</h3>
+  <p>Send event request to management</p>
+</div>
+
+  <div class="card" onclick="openProposal()">
+  <h3>📨 Submit Event</h3>
+  <p>Send event proposal to management</p>
+</div>
+
+  <h2>Submit Event Proposal</h2>
+
+  <form onsubmit="submitProposal(); return false;">
+    <input type="text" placeholder="Event Title" required>
+    
+    <select required>
+      <option value="">Select Category</option>
+      <option>Technical</option>
+      <option>Cultural</option>
+      <option>Sports</option>
+      <option>Workshop</option>
+    </select>
+
+    <textarea placeholder="Describe the event idea..." rows="4" required></textarea>
+
+    <input type="date" required>
+
+    <button type="submit">Submit Proposal</button>
+  </form>
+</div>
+
+<script>
+function submitProposal(){
+
+  const title = document.querySelector("input[type=text]").value;
+  const category = document.querySelector("select").value;
+  const description = document.querySelector("textarea").value;
+  const date = document.querySelector("input[type=date]").value;
+
+  const proposal = {
+    title,
+    category,
+    description,
+    date
+  };
+
+  localStorage.setItem("eventProposal", JSON.stringify(proposal));
+
+  alert("Proposal Sent to Management ✅");
+
+  document.querySelector("form").reset();
+}
+
+
+</script>
+<script>
+function openProposal(){
+  window.location.href = "staff-proposal.html";
+}
+</script>
+
+
+</body>
+</html>

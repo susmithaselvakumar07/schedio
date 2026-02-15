@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Events</title>
+
+<style>
+body{
+  font-family:Arial;
+  background:linear-gradient(135deg,#dd725c,#f176ad);
+  color:white;
+  text-align:center;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:yellow;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🎓 Approved College Events</h1>
+
+<!-- My Registered Events Button -->
+<button onclick="window.location.href='student_registered.html'" 
+style="padding:10px 20px; border-radius:8px; background:#00ffcc; font-weight:bold; margin-bottom:15px;">
+📌 My Registered Events
+</button>
+
+<div class="container" id="eventsBox"></div>
+<button onclick="showRegistered()">My Registered Events</button>
+<div id="myEvents"></div>
+
+
+<script>
+// Get approved events
+const events = JSON.parse(localStorage.getItem("approvedEvents")) || [];
+const box = document.getElementById("eventsBox");
+
+// If no events
+if(events.length == 0){
+  box.innerHTML = "<h3>No events approved yet</h3>";
+}
+
+// Show events with Register button
+events.forEach((event,index)=>{
+  box.innerHTML += `
+    <div class="card">
+      <h3>${event.title}</h3>
+      <p><b>Category:</b> ${event.category}</p>
+      <p><b>Date:</b> ${event.date}</p>
+      <p>${event.description}</p>
+
+      <button onclick="registerEvent(${index})">Register</button>
+    </div>
+  `;
+});
+
+// Register function
+function registerEvent(index){
+  let registered = JSON.parse(localStorage.getItem("registrations")) || [];
+  registered.push(events[index]);
+  localStorage.setItem("registrations", JSON.stringify(registered));
+  alert("🎉 Successfully Registered!");
+}
+
+function showRegistered(){
+  let registered = JSON.parse(localStorage.getItem("registrations")) || [];
+  let box = document.getElementById("myEvents");
+  box.innerHTML = "";
+
+  if(registered.length == 0){
+    box.innerHTML = "<p>No registered events</p>";
+    return;
+  }
+
+  registered.forEach(e=>{
+    box.innerHTML += `
+      <div class="card">
+        <h3>${e.title}</h3>
+        <p>${e.date}</p>
+      </div>
+    `;
+  });
+}
+
+</script>
+
+</body>
+</html>

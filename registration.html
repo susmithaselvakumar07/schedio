@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registered Students</title>
+<style>
+body{
+  background:#000;
+  color:white;
+  font-family:Arial;
+}
+.card{
+  background:#222;
+  padding:10px;
+  margin:10px;
+  border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<h2>📋 Student Registrations</h2>
+<div id="regBox"></div>
+
+<script>
+const regs = JSON.parse(localStorage.getItem("registrations")) || [];
+const box = document.getElementById("regBox");
+
+if(regs.length==0){
+  box.innerHTML="No registrations yet";
+}
+
+regs.forEach(r=>{
+  box.innerHTML += `
+    <div class="card">
+      <h3>${r.title}</h3>
+      <p>${r.date}</p>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>

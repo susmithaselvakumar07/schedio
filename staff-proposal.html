@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Staff Proposal</title>
+<style>
+body{
+  font-family: Arial;
+  background: linear-gradient(135deg,#ff7a18,#ffb347);
+}
+
+.form-container{
+  max-width:500px;
+  margin:60px auto;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+input, textarea, select, button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+}
+button{
+  background:#ff7a18;
+  color:white;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+<h2>Submit Event Proposal</h2>
+
+<form onsubmit="submitProposal(); return false;">
+<input id="title" type="text" placeholder="Event Title" required>
+<select id="category">
+<option value="">Select Category</option>
+<option>Technical</option>
+<option>Cultural</option>
+<option>Sports</option>
+<option>Workshop</option>
+</select>
+
+<textarea id="description" placeholder="Event Description"></textarea>
+<input id="date" type="date">
+
+<button type="submit">Submit Proposal</button>
+</form>
+</div>
+
+<script>
+function submitProposal(){
+  const proposal = {
+    title: title.value,
+    category: category.value,
+    description: description.value,
+    date: date.value
+  };
+
+  localStorage.setItem("eventProposal", JSON.stringify(proposal));
+  alert("Proposal sent to Management!");
+}
+</script>
+
+</body>
+</html>
